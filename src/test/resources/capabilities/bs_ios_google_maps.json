@@ -1,0 +1,19 @@
+{
+  "platformName": "iOS",
+  "bstack:options": {
+    "deviceName": "iPhone 14",
+    "osVersion": "16",
+    "projectName": "Google Maps Tests",
+    "buildName": "Maps iOS Build",
+    "sessionName": "Test Google Maps iOS",
+    "userName": "YOUR_BROWSERSTACK_USERNAME",
+    "accessKey": "YOUR_BROWSERSTACK_ACCESS_KEY",
+    "appiumVersion": "2.0",
+    "debug": true,
+    "networkLogs": true
+  },
+  "bundleId": "com.google.Maps",
+  "automationName": "XCUITest",
+  "noReset": "true",
+  "newCommandTimeout": "300"
+}

@@ -1,0 +1,8 @@
+{
+	"platformName": "Android",
+	"deviceName": "Android Emulator",
+	"automationName": "UiAutomator2",
+	"appPackage": "com.google.android.apps.maps",
+	"disableWindowAnimation": true,
+	"appActivity": "com.google.android.maps.MapsActivity"
+}

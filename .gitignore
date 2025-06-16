@@ -1,0 +1,37 @@
+# Java & IDEs
+*.class
+*.log
+*.iml
+.idea/
+target/
+out/
+bin/
+
+# Maven Wrapper
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Appium logs & temp
+*.tmp
+appium.log
+
+# Eclipse specific
+.settings/
+*.launch
+
+# IntelliJ IDEA
+*.ipr
+*.iws
+
+# Others you might add:
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp

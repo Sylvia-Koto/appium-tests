@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" parallel="tests" name="Failed suite [Mobile Test Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.djamo.qa.utils.Listeners"/>
+  </listeners>
+  <test thread-count="2" parallel="tests" name="Android Google Maps Test(failed)">
+    <parameter name="profile" value="android_google_maps"/>
+    <parameter name="platform" value="android"/>
+    <classes>
+      <class name="com.djamo.qa.tests.SearchAndNavigateTest">
+        <methods>
+          <include name="testSearchAndNavigate" invocation-numbers="0"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.djamo.qa.tests.SearchAndNavigateTest -->
+    </classes>
+  </test> <!-- Android Google Maps Test(failed) -->
+</suite> <!-- Failed suite [Mobile Test Suite] -->
