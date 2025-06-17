@@ -52,7 +52,7 @@ public class Listeners implements ITestListener {
     public void onTestStart(ITestResult result) {
         ExtentTest test = extent.createTest(result.getMethod().getMethodName());
         ExtentTestManager.setTest(test);
-        System.out.println("✅ onTestStart called for: " + result.getMethod().getMethodName());
+        System.out.println(" onTestStart called for: " + result.getMethod().getMethodName());
         
 
         Object testInstance = result.getInstance();
@@ -67,15 +67,15 @@ public class Listeners implements ITestListener {
                     String readableName = getReadableDeviceName(udid);
                  
 
-                    test.info("🔎 Platform: " + platform);
-                    test.info("📱 Device: " + device);
-                    test.info("📱 Device (AVD): " + readableName);
-                    test.info("🧩 Version: " + version);
+                    test.info(" Platform: " + platform);
+                    test.info(" Device: " + device);
+                    test.info(" Device (AVD): " + readableName);
+                    test.info(" Version: " + version);
                     
             
                     String appPackage = getCapabilitySafe(driver, "appPackage");
            
-                    test.info("📦 Application : " + (appPackage == null || appPackage.equals("Not set") ? "non défini" : appPackage));
+                    test.info(" Application : " + (appPackage == null || appPackage.equals("Not set") ? "non défini" : appPackage));
                 } catch (Exception e) {
                     test.warning("Impossible de récupérer les infos device: " + e.getMessage());
                 }

@@ -67,6 +67,9 @@ public class SearchAndNavigatePage {
     }
 
     public void tapOnDirectionsButton() {
+        String androidVersion = getAndroidVersion();
+        int majorVersion = Integer.parseInt(androidVersion.split("\\.")[0]);
+
         List<String> keywords = Arrays.asList(
             "Directions", "Itinéraire", "Indicazioni", "Cómo llegar",
             "Wegbeschreibung", "Indicaciones", "길찾기", "路线",
@@ -74,20 +77,33 @@ public class SearchAndNavigatePage {
             "Yön tarifi", "الاتجاهات", "Направления", "Indicii de direcție"
         );
 
-        for (String key : keywords) {
-            List<WebElement> matches = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-                By.xpath("//android.widget.Button[contains(@content-desc, '" + key + "')]")
-            ));
+        try {
+            for (String key : keywords) {
+                By locator;
 
-            if (!matches.isEmpty()) {
-                WebElement button = wait.until(ExpectedConditions.elementToBeClickable(matches.get(0)));
-                button.click();
-                System.out.println("✅ 'Directions' button clicked using keyword: " + key);
-                return;
+                if (majorVersion == 10) {
+                    // Android 10 : suppose que le bouton a un ID spécifique
+                    locator =  By.xpath("//android.support.design.chip.Chip[contains(@content-desc, '" + key + "')]") ;
+                
+                } else {
+                    // Autres versions : on se base uniquement sur le content-desc
+                    locator = By.xpath("//android.widget.Button[contains(@content-desc, '" + key + "')]");
+                }
+
+                List<WebElement> matches = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+
+                if (!matches.isEmpty()) {
+                    WebElement button = wait.until(ExpectedConditions.elementToBeClickable(matches.get(0)));
+                    button.click();
+                    System.out.println("'Directions' button clicked using keyword: " + key + " for Android version: " + androidVersion);
+                    return;
+                }
             }
-        }
 
-        throw new RuntimeException("❌ 'Directions' button not found in supported languages.");
+            throw new RuntimeException("'Directions' button not found for any keyword on Android " + androidVersion);
+        } catch (Exception e) {
+            throw new RuntimeException("Error while trying to click 'Directions' button on Android " + androidVersion + ": " + e.getMessage());
+        }
     }
 
     private String getAndroidVersion() {
@@ -98,7 +114,7 @@ public class SearchAndNavigatePage {
             String androidVersion = getAndroidVersion(); // ex: "14", "13.0", "12"
             int majorVersion = Integer.parseInt(androidVersion.split("\\.")[0]);
 
-            if (majorVersion == 14 || majorVersion == 11) {
+            if (Arrays.asList(14, 11, 12).contains(majorVersion)) {
                 // Android 14 & 11
                 wait.until(ExpectedConditions.elementToBeClickable(startPointEdit)).click();
             } else if (Arrays.asList(10, 12, 13, 15, 16).contains(majorVersion)) {

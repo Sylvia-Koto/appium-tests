@@ -41,14 +41,14 @@ public class DriverFactory {
             if (platform.equalsIgnoreCase("android")) {
                 UiAutomator2Options options = new UiAutomator2Options();
 
-                // Gestion du deviceName (ligne de commande ou JSON)
+                // deviceName
                 String deviceName = System.getProperty("deviceName",
                         json.has("deviceName") ? json.get("deviceName").getAsString() : null);
                 if (deviceName != null) {
                     options.setDeviceName(deviceName);
                 }
 
-                // Application des autres capabilities
+                // Application 
                 json.entrySet().forEach(entry -> {
                     String key = entry.getKey();
                     String value = entry.getValue().getAsString();
