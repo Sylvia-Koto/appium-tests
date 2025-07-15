@@ -1,8 +1,6 @@
-Google Maps Test Automation with Appium — Djamo Technical Assignment
+Google Maps Test Automation with Appium
 
 * Contexte (Version Française)
-
-Ce projet correspond à un test technique demandé par l’équipe Djamo.
 
 Il consiste à écrire un scénario automatisé sur l’application Google Maps.
 
@@ -465,11 +463,9 @@ Merci pour l’opportunité et bonne lecture
 > "Build for reuse, test for resilience."
 
 
-Google Maps Test Automation with Appium — Djamo Technical Assignment
+Google Maps Test Automation with Appium
 
 * Context (English Version)
-
-This project corresponds to a technical test requested by the Djamo team .
 
 It involves writing an automated scenario on the Google Maps application .
 
