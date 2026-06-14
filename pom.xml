@@ -30,7 +30,7 @@
 <dependency>
     <groupId>io.appium</groupId>
     <artifactId>java-client</artifactId>
-    <version>9.4.0</version>
+    <version>8.6.0</version>
 </dependency>
    <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 <dependency>
@@ -111,6 +111,10 @@
           <suiteXmlFiles>
             <suiteXmlFile>testng.xml</suiteXmlFile>
           </suiteXmlFiles>
+          <environmentVariables>
+            <ANDROID_HOME>${env.HOME}/Library/Android/sdk</ANDROID_HOME>
+            <ANDROID_SDK_ROOT>${env.HOME}/Library/Android/sdk</ANDROID_SDK_ROOT>
+          </environmentVariables>
         </configuration>
       </plugin>
       </plugins>
