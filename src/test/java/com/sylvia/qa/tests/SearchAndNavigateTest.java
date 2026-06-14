@@ -1,4 +1,4 @@
-package com.djamo.qa.tests;
+package com.sylvia.qa.tests;
 
 import java.io.FileReader;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.djamo.qa.base.BaseTest;
-import com.djamo.qa.pages.SearchAndNavigatePage;
+import com.sylvia.qa.base.BaseTest;
+import com.sylvia.qa.pages.SearchAndNavigatePage;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -29,7 +29,7 @@ public class SearchAndNavigateTest extends BaseTest {
         return data;
     }
 
-    @Test(dataProvider = "searchData", retryAnalyzer = com.djamo.qa.utils.Retry.class)
+    @Test(dataProvider = "searchData", retryAnalyzer = com.sylvia.qa.utils.Retry.class)
     public void testSearchAndNavigate(Map<String, String> data) {
         SearchAndNavigatePage page = new SearchAndNavigatePage(driver);
 

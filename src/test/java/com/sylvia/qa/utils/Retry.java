@@ -1,4 +1,4 @@
-package com.djamo.qa.utils;
+package com.sylvia.qa.utils;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-import com.djamo.qa.base.BaseTest;
+import com.sylvia.qa.base.BaseTest;
 
 import io.appium.java_client.AppiumDriver;
 

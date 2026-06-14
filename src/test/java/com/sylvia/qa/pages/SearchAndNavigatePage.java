@@ -1,4 +1,4 @@
-package com.djamo.qa.pages;
+package com.sylvia.qa.pages;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.AppiumBy;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.djamo.qa.utils.ExtentTestManager;
+import com.sylvia.qa.utils.ExtentTestManager;
 
 
 public class SearchAndNavigatePage {

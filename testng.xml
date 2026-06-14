@@ -4,14 +4,14 @@
 <suite name="Mobile Test Suite" parallel="tests" thread-count="2">
 
     <listeners>
-        <listener class-name="com.djamo.qa.utils.Listeners" />
+        <listener class-name="com.sylvia.qa.utils.Listeners" />
     </listeners>
 
     <test name="Android Google Maps Test">
         <parameter name="platform" value="android"/>
         <parameter name="profile" value="android_google_maps"/>
         <classes>
-            <class name="com.djamo.qa.tests.SearchAndNavigateTest"/>
+            <class name="com.sylvia.qa.tests.SearchAndNavigateTest"/>
         </classes>
     </test>
 

@@ -1,4 +1,4 @@
-package com.djamo.qa.utils;
+package com.sylvia.qa.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.ExtentTest;
 
-import com.djamo.qa.base.BaseTest;
+import com.sylvia.qa.base.BaseTest;
 import io.appium.java_client.AppiumDriver;
 
 public class Listeners implements ITestListener {

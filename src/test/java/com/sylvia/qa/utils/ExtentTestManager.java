@@ -1,4 +1,4 @@
-package com.djamo.qa.utils;
+package com.sylvia.qa.utils;
 
 import com.aventstack.extentreports.ExtentTest;
 

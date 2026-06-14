@@ -1,4 +1,4 @@
-package com.djamo.qa.utils;
+package com.sylvia.qa.utils;
 
 import java.io.File;
 import java.util.HashMap;

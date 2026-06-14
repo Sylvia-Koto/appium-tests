@@ -1,4 +1,4 @@
-package com.djamo.qa.base;
+package com.sylvia.qa.base;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.djamo.qa.factory.DriverFactory;
+import com.sylvia.qa.factory.DriverFactory;
 
 import io.appium.java_client.AppiumDriver;
 

@@ -1,10 +1,10 @@
-package com.djamo.qa.factory;
+package com.sylvia.qa.factory;
 
 import java.io.FileReader;
 import java.net.URL;
 import java.net.URI;
 
-import com.djamo.qa.utils.AppiumServerManager;
+import com.sylvia.qa.utils.AppiumServerManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 

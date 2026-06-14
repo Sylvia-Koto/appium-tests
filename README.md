@@ -28,7 +28,7 @@ Test data is driven from `src/test/resources/data/search_route.json`.
 appium-tests/
 ├── pom.xml
 ├── testng.xml
-├── src/test/java/com/djamo/qa/
+├── src/test/java/com/sylvia/qa/
 │   ├── base/         BaseTest.java
 │   ├── factory/      DriverFactory.java
 │   ├── pages/        SearchAndNavigatePage.java
