@@ -23,6 +23,9 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 import io.appium.java_client.AppiumBy;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.djamo.qa.utils.ExtentTestManager;
+
 
 public class SearchAndNavigatePage {
 
@@ -43,20 +46,23 @@ public class SearchAndNavigatePage {
 
     public void openSearchBox() {
         wait.until(ExpectedConditions.elementToBeClickable(searchBox)).click();
+        ExtentTest test = ExtentTestManager.getTest();
+        if (test != null) test.info("Search box opened.");
     }
 
     public void dismissSignInPopupIfPresent() {
+        ExtentTest test = ExtentTestManager.getTest();
         try {
             By signInPopup = By.xpath("//*[contains(@text,'Sign in') or contains(@text,'Se connecter') or contains(@text,'Connexion')]");
             List<WebElement> popups = driver.findElements(signInPopup);
             if (!popups.isEmpty()) {
                 pressEnterKey();
-                System.out.println("Sign-in popup dismissed.");
+                if (test != null) test.info("Sign-in popup detected and dismissed.");
             } else {
-                System.out.println("No sign-in popup detected.");
+                if (test != null) test.info("No sign-in popup detected.");
             }
         } catch (Exception e) {
-            System.out.println("Error while checking sign-in popup: " + e.getMessage());
+            if (test != null) test.warning("Error while checking sign-in popup: " + e.getMessage());
         }
     }
 
@@ -68,7 +74,9 @@ public class SearchAndNavigatePage {
 
     public void enterSearchText(String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchInputField)).sendKeys(text);
-        pressEnterKey(); // triggers search
+        pressEnterKey();
+        ExtentTest test = ExtentTestManager.getTest();
+        if (test != null) test.info("Search text entered: " + text);
     }
 
     public void tapOnDirectionsButton() {
@@ -94,7 +102,8 @@ public class SearchAndNavigatePage {
                     WebElement button = new WebDriverWait(driver, Duration.ofSeconds(5))
                         .until(ExpectedConditions.elementToBeClickable(matches.get(0)));
                     button.click();
-                    System.out.println("'Directions' button clicked using keyword: " + key + " for Android version: " + androidVersion);
+                    ExtentTest test = ExtentTestManager.getTest();
+                    if (test != null) test.info("'Directions' button clicked (keyword: \"" + key + "\", Android " + androidVersion + ")");
                     return;
                 }
             }
@@ -124,11 +133,12 @@ public class SearchAndNavigatePage {
                 throw new RuntimeException("Android version not supported: " + androidVersion);
             }
 
-            // Entering the starting point
             WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(searchInputField));
             input.clear();
             input.sendKeys(startPoint);
             pressEnterKey();
+            ExtentTest test = ExtentTestManager.getTest();
+            if (test != null) test.info("Start point changed to: " + startPoint);
 
         } catch (Exception e) {
             throw new RuntimeException("Unable to click 'Choose start location'. Check the selectors for Android." + getAndroidVersion() + " : " + e.getMessage());
@@ -136,13 +146,18 @@ public class SearchAndNavigatePage {
     }
 
     public boolean isMapVisible() {
+        ExtentTest test = ExtentTestManager.getTest();
         try {
-        	return wait.until(ExpectedConditions.visibilityOfElementLocated(mapView)).isDisplayed();
+            boolean visible = wait.until(ExpectedConditions.visibilityOfElementLocated(mapView)).isDisplayed();
+            if (test != null) test.info("Map is visible (layers button detected).");
+            return visible;
         } catch (Exception e) {
             try {
-                // other indicator
-            	return wait.until(ExpectedConditions.visibilityOfElementLocated(mapCompass)).isDisplayed();
+                boolean visible = wait.until(ExpectedConditions.visibilityOfElementLocated(mapCompass)).isDisplayed();
+                if (test != null) test.info("Map is visible (compass detected).");
+                return visible;
             } catch (Exception ex) {
+                if (test != null) test.warning("Map not visible: neither layers button nor compass found.");
                 return false;
             }
         }

@@ -28,7 +28,10 @@ appium.log
 *.ipr
 *.iws
 
-# Others you might add:
+# Test output
+screenshots/
+reports/
+
 # Logs
 logs/
 *.log
