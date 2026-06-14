@@ -75,9 +75,9 @@ public class Listeners implements ITestListener {
             
                     String appPackage = getCapabilitySafe(driver, "appPackage");
            
-                    test.info(" Application : " + (appPackage == null || appPackage.equals("Not set") ? "non défini" : appPackage));
+                    test.info(" Application: " + (appPackage == null || appPackage.equals("Not set") ? "not set" : appPackage));
                 } catch (Exception e) {
-                    test.warning("Impossible de récupérer les infos device: " + e.getMessage());
+                    test.warning("Unable to retrieve device info: " + e.getMessage());
                 }
             }
         }
@@ -110,12 +110,12 @@ public class Listeners implements ITestListener {
                                 MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
                         saveScreenshotToFile(uniqueId, screenshotBase64);
                     }else {
-                        System.out.println("Driver est null au moment de la capture d'écran !");
+                        System.out.println("Driver is null at the time of screenshot capture!");
                     }
                     
                 }
             } catch (Exception e) {
-                ExtentTestManager.getTest().warning("Échec de la capture: " + e.getMessage());
+                ExtentTestManager.getTest().warning("Screenshot capture failed: " + e.getMessage());
             }
         }
     }
@@ -143,7 +143,7 @@ public class Listeners implements ITestListener {
             Files.createDirectories(Paths.get("screenshots"));
             Files.write(Paths.get(fileName), decodedImg);
         } catch (Exception e) {
-            ExtentTestManager.getTest().warning("Échec sauvegarde fichier: " + e.getMessage());
+            ExtentTestManager.getTest().warning("Screenshot file save failed: " + e.getMessage());
         }
     }
 

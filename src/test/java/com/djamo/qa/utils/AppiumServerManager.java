@@ -46,7 +46,7 @@ public class AppiumServerManager {
 
     private static String getAppiumMainJSPath() {
         String envPath = System.getenv("APPIUM_MAIN_JS");
-        System.out.println("🔍 Valeur APPIUM_MAIN_JS dans Java : " + System.getenv("APPIUM_MAIN_JS"));
+        System.out.println("APPIUM_MAIN_JS value: " + System.getenv("APPIUM_MAIN_JS"));
         if (envPath != null && !envPath.isEmpty()) {
             File file = new File(envPath);
             if (file.exists()) return envPath;

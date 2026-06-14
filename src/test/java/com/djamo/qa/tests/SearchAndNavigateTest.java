@@ -14,9 +14,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 public class SearchAndNavigateTest extends BaseTest {
-	
-
-    private SearchAndNavigatePage page;
 
     @DataProvider(name = "searchData")
     public Object[][] getSearchData() throws Exception {
@@ -34,19 +31,18 @@ public class SearchAndNavigateTest extends BaseTest {
 
     @Test(dataProvider = "searchData", retryAnalyzer = com.djamo.qa.utils.Retry.class)
     public void testSearchAndNavigate(Map<String, String> data) {
-        page = new SearchAndNavigatePage(driver);
+        SearchAndNavigatePage page = new SearchAndNavigatePage(driver);
 
         String searchText = data.get("searchText");
         String startPoint = data.get("startPoint");
-        
-        page.dismissSignInPopupIfPresent();
+
         page.dismissSignInPopupIfPresent();
         page.openSearchBox();
         page.enterSearchText(searchText);
         page.tapOnDirectionsButton();
         page.changeStartingPoint(startPoint);
         Assert.assertTrue(page.isMapVisible(), "The map should be visible after starting the direction");
-        
+
         page.captureMapScreenshotIfVisible(driver);
     }
 

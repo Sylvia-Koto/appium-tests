@@ -47,11 +47,16 @@ public class SearchAndNavigatePage {
 
     public void dismissSignInPopupIfPresent() {
         try {
-            pressEnterKey(); // dismiss pop-up with ENTER
+            By signInPopup = By.xpath("//*[contains(@text,'Sign in') or contains(@text,'Se connecter') or contains(@text,'Connexion')]");
+            List<WebElement> popups = driver.findElements(signInPopup);
+            if (!popups.isEmpty()) {
+                pressEnterKey();
+                System.out.println("Sign-in popup dismissed.");
+            } else {
+                System.out.println("No sign-in popup detected.");
+            }
         } catch (Exception e) {
-            System.out.println("No sign-in popup detected.");
-        } finally {
-            wait.withTimeout(Duration.ofSeconds(15));
+            System.out.println("Error while checking sign-in popup: " + e.getMessage());
         }
     }
 
@@ -79,21 +84,15 @@ public class SearchAndNavigatePage {
 
         try {
             for (String key : keywords) {
-                By locator;
+                By locator = (majorVersion == 10)
+                    ? By.xpath("//android.support.design.chip.Chip[contains(@content-desc, '" + key + "')]")
+                    : By.xpath("//android.widget.Button[contains(@content-desc, '" + key + "')]");
 
-                if (majorVersion == 10) {
-                    // Android 10 : suppose que le bouton a un ID spécifique
-                    locator =  By.xpath("//android.support.design.chip.Chip[contains(@content-desc, '" + key + "')]") ;
-                
-                } else {
-                    // Autres versions : on se base uniquement sur le content-desc
-                    locator = By.xpath("//android.widget.Button[contains(@content-desc, '" + key + "')]");
-                }
-
-                List<WebElement> matches = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+                List<WebElement> matches = driver.findElements(locator);
 
                 if (!matches.isEmpty()) {
-                    WebElement button = wait.until(ExpectedConditions.elementToBeClickable(matches.get(0)));
+                    WebElement button = new WebDriverWait(driver, Duration.ofSeconds(5))
+                        .until(ExpectedConditions.elementToBeClickable(matches.get(0)));
                     button.click();
                     System.out.println("'Directions' button clicked using keyword: " + key + " for Android version: " + androidVersion);
                     return;
@@ -101,6 +100,8 @@ public class SearchAndNavigatePage {
             }
 
             throw new RuntimeException("'Directions' button not found for any keyword on Android " + androidVersion);
+        } catch (RuntimeException e) {
+            throw e;
         } catch (Exception e) {
             throw new RuntimeException("Error while trying to click 'Directions' button on Android " + androidVersion + ": " + e.getMessage());
         }
@@ -114,11 +115,9 @@ public class SearchAndNavigatePage {
             String androidVersion = getAndroidVersion(); // ex: "14", "13.0", "12"
             int majorVersion = Integer.parseInt(androidVersion.split("\\.")[0]);
 
-            if (Arrays.asList(14, 11, 12).contains(majorVersion)) {
-                // Android 14 & 11
+            if (Arrays.asList(11, 14).contains(majorVersion)) {
                 wait.until(ExpectedConditions.elementToBeClickable(startPointEdit)).click();
             } else if (Arrays.asList(10, 12, 13, 15, 16).contains(majorVersion)) {
-                // Android 10, 12, 13, 15, 16 : accessibilityId
                 By byAccId = AppiumBy.accessibilityId("Choose start location");
                 wait.until(ExpectedConditions.elementToBeClickable(byAccId)).click();
             } else {
